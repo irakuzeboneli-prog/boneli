@@ -1,31 +1,402 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f6ef">
+  <meta name="description" content="Peace Over Fear explores the causes of conflict, peaceful solutions, and why peace matters to every community.">
+  <title>Peace Over Fear — Choose peace. Build it together.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --paper: #f8f6ef;
+      --ink: #20362e;
+      --muted: #64746a;
+      --green: #315a45;
+      --green-dark: #203c30;
+      --lime: #d7e38d;
+      --coral: #e78365;
+      --line: #dedfd3;
+      --white: #fffefa;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    button { font: inherit; }
+    .wrap { width: min(1160px, calc(100% - 64px)); margin-inline: auto; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+    .eyebrow::before { width: 20px; height: 1px; background: currentColor; content: ""; }
+
+    .site-header { position: sticky; z-index: 5; top: 0; border-bottom: 1px solid rgb(32 54 46 / 8%); background: rgb(248 246 239 / 93%); backdrop-filter: blur(12px); }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+    .brand-mark { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: var(--green); color: var(--lime); }
+    .brand-mark span { font-size: 22px; }
+    .brand-name { font-family: var(--serif); font-size: 21px; font-weight: 700; letter-spacing: -.04em; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { color: #43564c; font-size: 13px; font-weight: 600; text-decoration: none; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-links .nav-cta { padding: 11px 17px; border-radius: 3px; background: var(--green); color: white; }
+    .menu-toggle { display: none; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--ink); font-size: 25px; cursor: pointer; }
+
+    .hero { padding: 64px 0 70px; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1.03fr; align-items: center; gap: 64px; }
+    .hero-copy { padding: 10px 0 14px; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 570px; margin: 20px 0; font-family: var(--serif); font-size: clamp(48px, 6.1vw, 78px); font-weight: 500; letter-spacing: -.065em; line-height: 1.03; }
+    h1 em { color: var(--green); font-weight: 500; }
+    .hero-copy > p { max-width: 465px; margin-bottom: 26px; color: var(--muted); font-size: 16px; line-height: 1.8; }
+    .button-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .button { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 0 20px; border: 1px solid var(--green); border-radius: 3px; background: var(--green); color: white; font-size: 13px; font-weight: 700; text-decoration: none; transition: background .2s, transform .2s; }
+    .button:hover { transform: translateY(-2px); background: var(--green-dark); }
+    .button.secondary { background: transparent; color: var(--green); }
+    .button.secondary:hover { background: #edf0e3; }
+    .hero-note { display: flex; align-items: center; gap: 11px; margin-top: 32px; color: var(--muted); font-size: 12px; }
+    .note-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--coral); }
+    .hero-visual { position: relative; min-height: 450px; }
+    .hero-image { position: absolute; inset: 0 22px 30px 0; overflow: hidden; border-radius: 180px 180px 4px 4px; background: #b6c0a3 url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1400&q=85") center 48% / cover no-repeat; }
+    .hero-image::after { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgb(19 36 27 / 42%)); content: ""; }
+    .image-caption { position: absolute; z-index: 1; bottom: 56px; left: 32px; color: white; font-family: var(--serif); font-size: 19px; }
+    .image-caption small { display: block; margin-top: 5px; font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: .05em; }
+    .hero-stamp { position: absolute; top: 47px; right: 0; width: 105px; height: 105px; display: grid; place-items: center; border-radius: 50%; background: var(--lime); color: var(--green-dark); text-align: center; transform: rotate(9deg); }
+    .hero-stamp span { max-width: 76px; font-family: var(--serif); font-size: 15px; line-height: 1.25; }
+    .hero-stat { position: absolute; right: 0; bottom: 0; width: 205px; padding: 18px 20px; border: 1px solid var(--line); background: var(--paper); }
+    .hero-stat strong { display: block; color: var(--green); font-family: var(--serif); font-size: 25px; font-weight: 600; }
+    .hero-stat span { display: block; margin-top: 4px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+
+    .ticker { overflow: hidden; border-block: 1px solid var(--line); }
+    .ticker-inner { min-height: 62px; display: flex; align-items: center; justify-content: center; gap: clamp(15px, 4vw, 48px); color: var(--green); }
+    .ticker-item { display: flex; align-items: center; gap: 10px; white-space: nowrap; font-family: var(--serif); font-size: 15px; }
+    .ticker-item b { color: var(--coral); font-family: var(--sans); font-size: 17px; }
+
+    .section { padding: 104px 0; }
+    .section-heading { max-width: 650px; margin-bottom: 42px; }
+    .section-heading h2 { margin: 15px 0 12px; font-family: var(--serif); font-size: clamp(36px, 4vw, 52px); font-weight: 500; letter-spacing: -.05em; line-height: 1.12; }
+    .section-heading p { max-width: 520px; margin-bottom: 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+    .impact { background: var(--green-dark); color: var(--white); }
+    .impact .eyebrow { color: var(--lime); }
+    .impact .section-heading p { color: #c1cbbf; }
+    .impact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; border: 1px solid rgb(255 255 255 / 15%); background: rgb(255 255 255 / 15%); }
+    .impact-card { min-height: 244px; padding: 28px 28px 26px; background: var(--green-dark); }
+    .impact-number { display: block; margin-bottom: 27px; color: var(--lime); font-family: var(--serif); font-size: 18px; }
+    .impact-card h3 { margin-bottom: 10px; font-family: var(--serif); font-size: 23px; font-weight: 500; }
+    .impact-card p { margin-bottom: 0; color: #c1cbbf; font-size: 13px; line-height: 1.75; }
+    .impact-footnote { margin: 15px 0 0; color: #aab8ab; font-size: 10px; line-height: 1.6; }
+
+    .peace-grid { display: grid; grid-template-columns: .8fr 1.2fr; align-items: start; gap: 90px; }
+    .peace-grid .section-heading { position: sticky; top: 120px; }
+    .peace-list { border-top: 1px solid var(--line); }
+    .peace-item { display: grid; grid-template-columns: 50px 1fr; gap: 14px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+    .peace-icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; background: #e8ebd7; color: var(--green); font-size: 22px; }
+    .peace-item h3 { margin: 2px 0 7px; font-family: var(--serif); font-size: 20px; font-weight: 600; }
+    .peace-item p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+
+    .actions { padding: 82px 0 94px; background: #eeeee4; }
+    .actions .section-heading { margin-inline: auto; text-align: center; }
+    .actions .section-heading .eyebrow { justify-content: center; }
+    .actions .section-heading p { margin-inline: auto; }
+    .action-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .action-card { min-height: 236px; display: flex; flex-direction: column; padding: 25px; border: 1px solid #dedfd3; background: var(--paper); }
+    .action-card .tag { align-self: flex-start; margin-bottom: 19px; padding: 6px 9px; border-radius: 2px; background: #e8ebd7; color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .action-card h3 { margin-bottom: 9px; font-family: var(--serif); font-size: 22px; font-weight: 600; }
+    .action-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.75; }
+
+    .pledge-section { padding: 90px 0; }
+    .pledge-box { position: relative; overflow: hidden; display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 30px; padding: 46px 54px; background: var(--green); color: white; }
+    .pledge-box::after { position: absolute; top: -125px; right: 12%; width: 350px; height: 350px; border: 1px solid rgb(255 255 255 / 14%); border-radius: 50%; box-shadow: 0 0 0 40px rgb(255 255 255 / 4%), 0 0 0 80px rgb(255 255 255 / 3%); content: ""; pointer-events: none; }
+    .pledge-box .eyebrow { color: var(--lime); }
+    .pledge-box h2 { max-width: 530px; margin: 13px 0 10px; font-family: var(--serif); font-size: clamp(34px, 4vw, 48px); font-weight: 500; letter-spacing: -.05em; line-height: 1.1; }
+    .pledge-box p { max-width: 500px; margin: 0; color: #d2dcd1; font-size: 13px; line-height: 1.75; }
+    .pledge-action { position: relative; z-index: 1; justify-self: end; text-align: center; }
+    .pledge-action .button { min-width: 190px; border-color: var(--lime); background: var(--lime); color: var(--green-dark); }
+    .pledge-action .button:hover { background: #e5edb5; }
+    .pledge-action .button:disabled { cursor: default; opacity: .9; transform: none; }
+    .pledge-count { margin-top: 13px; color: #d2dcd1; font-size: 11px; }
+    .pledge-count strong { color: white; }
+
+    .footer { padding: 29px 0; border-top: 1px solid var(--line); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .footer p { margin: 0; color: var(--muted); font-size: 11px; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { color: var(--muted); font-size: 11px; text-decoration: none; }
+    .footer-links a:hover { color: var(--green); }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
+
+    @media (max-width: 800px) {
+      .hero-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .hero-visual { min-height: 390px; }
+      .hero-stamp { width: 84px; height: 84px; }
+      .hero-stamp span { font-size: 12px; }
+      .peace-grid { grid-template-columns: 1fr 1.25fr; gap: 38px; }
+      .pledge-box { padding: 38px; }
+      .ticker-inner { justify-content: flex-start; overflow: auto; }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 40px, 480px); }
+      .nav { min-height: 68px; }
+      .menu-toggle { display: grid; place-items: center; }
+      .nav-links { position: absolute; top: 67px; right: 0; left: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 8px 20px 18px; border-bottom: 1px solid var(--line); background: var(--paper); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 13px 4px; }
+      .nav-links .nav-cta { margin-top: 5px; padding: 12px; text-align: center; }
+      .hero { padding: 49px 0 44px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 34px; }
+      h1 { max-width: 450px; font-size: clamp(47px, 14vw, 68px); }
+      .hero-copy > p { font-size: 14px; }
+      .hero-visual { min-height: 380px; }
+      .hero-image { right: 15px; }
+      .hero-stamp { top: 24px; }
+      .hero-stat { width: 175px; padding: 14px 16px; }
+      .ticker-inner { min-height: 54px; gap: 24px; }
+      .ticker-item { font-size: 13px; }
+      .section { padding: 72px 0; }
+      .section-heading { margin-bottom: 30px; }
+      .section-heading h2 { font-size: 38px; }
+      .impact-grid, .action-grid { grid-template-columns: 1fr; }
+      .impact-card { min-height: 0; padding: 23px; }
+      .impact-number { margin-bottom: 16px; }
+      .peace-grid { grid-template-columns: 1fr; gap: 10px; }
+      .peace-grid .section-heading { position: static; }
+      .actions { padding: 68px 0; }
+      .action-card { min-height: 0; }
+      .pledge-section { padding: 64px 0; }
+      .pledge-box { grid-template-columns: 1fr; gap: 24px; padding: 30px 25px; }
+      .pledge-action { justify-self: start; text-align: left; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
 </head>
 <body>
-  <section class="sec-one">
-    <div class="one"></div>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="index.html" aria-label="Peace Over Fear home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.35-7-10a4 4 0 0 1 7-2.65A4 4 0 0 1 19 10c0 5.65-7 10-7 10Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span>
+        <span class="brand-name">peace over fear</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links">☰</button>
+      <div class="nav-links" id="nav-links">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="causes.html">Causes</a>
+        <a href="solutions.html">Solutions</a>
+        <a href="importance.html">Why peace</a>
+        <a class="nav-cta" href="#pledge">Make a promise <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+  </header>
 
-    <div class="two"></div>
+  <main>
+    <section class="hero wrap" id="home">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">A world worth choosing</span>
+          <h1>Peace isn't passive. It's <em>something we build.</em></h1>
+          <p>War changes lives long after the headlines fade. Understanding its human cost is where a more peaceful future begins—and each of us has a part to play.</p>
+          <div class="button-row">
+            <a class="button" href="#understand">Understand the impact <span aria-hidden="true">↓</span></a>
+            <a class="button secondary" href="#action">Find your next step</a>
+          </div>
+          <div class="hero-note"><span class="note-dot" aria-hidden="true"></span> A space for learning, empathy, and action.</div>
+        </div>
+        <div class="hero-visual" aria-label="A group of friends gathered outdoors">
+          <div class="hero-image" role="img" aria-label="Friends sharing a moment together outdoors">
+            <div class="image-caption">A little more listening.<small>A little less distance between us.</small></div>
+          </div>
+          <div class="hero-stamp"><span>Different stories.<br>One shared future.</span></div>
+          <div class="hero-stat"><strong>Every voice matters.</strong><span>Peace starts in the way we treat one another, right where we are.</span></div>
+        </div>
+      </div>
+    </section>
 
-    <div class="three"></div>
-  </section>
-    
+    <div class="ticker" aria-label="Our values">
+      <div class="ticker-inner wrap">
+        <span class="ticker-item"><b>✳</b> Dignity</span>
+        <span class="ticker-item"><b>✳</b> Understanding</span>
+        <span class="ticker-item"><b>✳</b> Courage</span>
+        <span class="ticker-item"><b>✳</b> Common ground</span>
+        <span class="ticker-item"><b>✳</b> Hope</span>
+      </div>
+    </div>
 
+    <section class="topic-section wrap" aria-labelledby="topics-title">
+      <div class="section-heading">
+        <span class="eyebrow">Explore the big picture</span>
+        <h2 id="topics-title">Understanding is a place to begin.</h2>
+        <p>Explore what can drive conflict, how communities can work toward solutions, and why peace matters.</p>
+      </div>
+      <div class="topic-grid">
+        <a class="topic-card" href="causes.html">
+          <img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="A city skyline at dusk, representing the many pressures that shape communities">
+          <span class="topic-card-body"><span class="topic-kicker">01 / Understand</span><strong>Causes of conflict</strong><span>Explore how inequality, fear, and unresolved disputes can contribute to tensions.</span><span class="topic-link">Explore causes <b aria-hidden="true">↗</b></span></span>
+        </a>
+        <a class="topic-card" href="solutions.html">
+          <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="People working together around a table to find solutions">
+          <span class="topic-card-body"><span class="topic-kicker">02 / Build</span><strong>Solutions to conflict</strong><span>Learn about dialogue, mediation, justice, and the long work of rebuilding trust.</span><span class="topic-link">Explore solutions <b aria-hidden="true">↗</b></span></span>
+        </a>
+        <a class="topic-card" href="importance.html">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Friends gathered outdoors, sharing a moment of connection">
+          <span class="topic-card-body"><span class="topic-kicker">03 / Imagine</span><strong>Why peace matters</strong><span>See how peaceful communities support safety, opportunity, and belonging.</span><span class="topic-link">Explore peace <b aria-hidden="true">↗</b></span></span>
+        </a>
+      </div>
+    </section>
 
+    <section class="section impact" id="understand">
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="eyebrow">Look beyond the headlines</span>
+          <h2>Conflict reaches far beyond the battlefield.</h2>
+          <p>War is not an abstraction. It touches people, families, and the foundations of daily life—often for generations.</p>
+        </div>
+        <div class="impact-grid">
+          <article class="impact-card">
+            <span class="impact-number">01 / People</span>
+            <h3>Lives upended</h3>
+            <p>Civilians can lose loved ones, homes, safety, and access to essentials. Displacement can separate families and make returning home uncertain.</p>
+          </article>
+          <article class="impact-card">
+            <span class="impact-number">02 / Futures</span>
+            <h3>Growing up in crisis</h3>
+            <p>When schools close and communities are disrupted, children may lose learning, stability, and the chance to plan for the future.</p>
+          </article>
+          <article class="impact-card">
+            <span class="impact-number">03 / Communities</span>
+            <h3>Damage that lasts</h3>
+            <p>Fear, grief, and broken trust can persist after fighting stops. Rebuilding relationships and institutions takes time and collective care.</p>
+          </article>
+        </div>
+        <p class="impact-footnote">Experiences vary from one conflict and community to another. These are broad impacts, not a complete account.</p>
+      </div>
+    </section>
 
+    <section class="section" id="peace">
+      <div class="wrap peace-grid">
+        <div class="section-heading">
+          <span class="eyebrow">More than the absence of war</span>
+          <h2>So, what does peace look like?</h2>
+          <p>Peace is not simply a quiet moment. It is the everyday work of making safety, fairness, and respect possible for everyone.</p>
+        </div>
+        <div class="peace-list">
+          <article class="peace-item">
+            <span class="peace-icon" aria-hidden="true">♡</span>
+            <div><h3>Safety and dignity</h3><p>People can live without fear, meet their basic needs, and be treated with respect—regardless of who they are.</p></div>
+          </article>
+          <article class="peace-item">
+            <span class="peace-icon" aria-hidden="true">↔</span>
+            <div><h3>Fairness and opportunity</h3><p>People have a meaningful chance to participate, access resources, and seek justice when they are harmed.</p></div>
+          </article>
+          <article class="peace-item">
+            <span class="peace-icon" aria-hidden="true">◌</span>
+            <div><h3>Trust and belonging</h3><p>Differences can be discussed without dehumanizing each other, and communities have ways to resolve disputes.</p></div>
+          </article>
+          <article class="peace-item">
+            <span class="peace-icon" aria-hidden="true">✳</span>
+            <div><h3>Care for the future</h3><p>Children can learn, families can plan, and communities can work together to address challenges before they escalate.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
 
+    <section class="actions" id="action">
+      <div class="wrap">
+        <div class="section-heading">
+          <span class="eyebrow">Small actions, real meaning</span>
+          <h2>Peace can start closer than you think.</h2>
+          <p>You don't have to solve everything to make a difference. Choose one thoughtful action and start there.</p>
+        </div>
+        <div class="action-grid">
+          <article class="action-card">
+            <span class="tag">Listen</span>
+            <h3>Make room for another story</h3>
+            <p>Have a respectful conversation with someone whose experience or perspective is different from your own. Try listening to understand, not to win.</p>
+          </article>
+          <article class="action-card">
+            <span class="tag">Learn</span>
+            <h3>Pause before you share</h3>
+            <p>Check who created a post, look for reliable context, and avoid passing along unverified claims or language that turns people into stereotypes.</p>
+          </article>
+          <article class="action-card">
+            <span class="tag">Connect</span>
+            <h3>Show up in your community</h3>
+            <p>Support local efforts that bring people together—through volunteering, welcoming a neighbor, or creating space for different voices.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
+    <section class="pledge-section" id="pledge">
+      <div class="wrap">
+        <div class="pledge-box">
+          <div>
+            <span class="eyebrow">A promise to one another</span>
+            <h2>Be curious. Be kind. Keep choosing peace.</h2>
+            <p>Make a personal commitment to listen with care, question what divides us, and treat every person with dignity. It begins with one choice.</p>
+          </div>
+          <div class="pledge-action">
+            <button class="button" id="pledge-button" type="button">I choose peace <span aria-hidden="true">↗</span></button>
+            <p class="pledge-count" id="pledge-message" aria-live="polite">A personal promise, kept one day at a time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-mark" aria-hidden="true"><span>♡</span></span>
+        <span class="brand-name">peace over fear</span>
+      </a>
+      <p>Made with hope for a more peaceful world.</p>
+      <div class="footer-links"><a href="causes.html">Causes</a><a href="solutions.html">Solutions</a><a href="importance.html">Why peace</a></div>
+    </div>
+  </footer>
 
+  <script>
+    const menuButton = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
 
+    menuButton.addEventListener("click", () => {
+      const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+      menuButton.setAttribute("aria-expanded", String(!isOpen));
+      menuButton.setAttribute("aria-label", isOpen ? "Open navigation menu" : "Close navigation menu");
+      navLinks.classList.toggle("open", !isOpen);
+    });
 
+    navLinks.addEventListener("click", (event) => {
+      if (event.target.closest("a")) {
+        navLinks.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "Open navigation menu");
+      }
+    });
 
+    const pledgeButton = document.querySelector("#pledge-button");
+    const pledgeMessage = document.querySelector("#pledge-message");
+    const pledgeKey = "common-ground-peace-pledge";
 
-    <script src="main.js"></script>
+    if (localStorage.getItem(pledgeKey) === "made") {
+      pledgeButton.disabled = true;
+      pledgeButton.innerHTML = "Promise made <span aria-hidden=\"true\">✓</span>";
+      pledgeMessage.textContent = "Your promise is saved on this device. Thank you for choosing peace.";
+    }
+
+    pledgeButton.addEventListener("click", () => {
+      localStorage.setItem(pledgeKey, "made");
+      pledgeButton.disabled = true;
+      pledgeButton.innerHTML = "Promise made <span aria-hidden=\"true\">✓</span>";
+      pledgeMessage.textContent = "Your promise is saved on this device. Thank you for choosing peace.";
+    });
+  </script>
 </body>
 </html>
