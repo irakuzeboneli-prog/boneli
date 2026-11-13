@@ -2,6 +2,7 @@
     width: 100%;
     height: 300px;
     background-color: green;
+    display: flex
 }
 
 .one {
@@ -14,4 +15,10 @@
     width: 25%;
     height: 200px;
     background-color: blue;
+}
+
+.three {
+    width: 25%;
+    height: 200px;
+    background-color: yellow;
 }
