@@ -1,5 +1,5 @@
-const menuButton = document.querySelector(".page-nav-toggle");
-const navLinks = document.querySelector(".page-nav-links");
+const menuButton = document.querySelector(".page-nav-toggle, .menu-toggle");
+const navLinks = document.querySelector(".page-nav-links, .nav-links");
 
 if (menuButton && navLinks) {
   menuButton.addEventListener("click", () => {

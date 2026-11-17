@@ -47,6 +47,27 @@
 .page-hero-photo img { position: absolute; width: 100%; height: 100%; object-fit: cover; }
 .photo-caption { position: absolute; right: 0; bottom: 0; left: 0; padding: 45px 23px 20px; background: linear-gradient(transparent, rgb(19 36 27 / 68%)); color: white; font-family: var(--serif); font-size: 17px; }
 .page-section { padding: 76px 0; }
+.contact-panel { max-width: 720px; padding: 34px; border: 1px solid var(--line); background: var(--white); }
+.contact-panel h2 { margin: 0 0 12px; font-family: var(--serif); font-size: clamp(30px, 4vw, 42px); font-weight: 500; letter-spacing: -.05em; }
+.contact-panel p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.8; }
+.contact-number { display: block; margin-top: 20px; color: var(--green); font-size: 16px; font-weight: 700; }
+.contact-panel .page-cta { margin-top: 22px; }
+.contact-forms { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; align-items: start; }
+.contact-form { padding: 25px; border: 1px solid var(--line); background: var(--white); }
+.contact-form h3 { margin: 0 0 18px; font-family: var(--serif); font-size: 24px; font-weight: 600; }
+.contact-form label { display: block; margin: 14px 0 7px; color: var(--ink); font-size: 14px; font-weight: 600; }
+.contact-form .consent-label { display: flex; align-items: flex-start; gap: 9px; font-size: 13px; font-weight: 400; line-height: 1.6; }
+.contact-form .consent-label input { width: auto; margin: 3px 0 0; }
+.contact-form .form-honeypot { position: absolute; left: -10000px; }
+.contact-form textarea, .contact-form input { width: 100%; padding: 11px 12px; border: 1px solid var(--line); border-radius: 2px; background: var(--paper); color: var(--ink); font: inherit; }
+.contact-form textarea { resize: vertical; }
+.contact-form .page-button { margin-top: 14px; cursor: pointer; }
+.form-status { min-height: 1.5em; margin: 10px 0 0; color: var(--green); font-size: 13px; }
+.local-note { margin: -7px 0 12px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+.comment-list { display: grid; gap: 10px; margin: 20px 0 0; padding: 0; list-style: none; }
+.comment-list li { padding: 13px; border-left: 2px solid var(--lime); background: var(--paper); }
+.comment-author { display: block; margin-bottom: 5px; color: var(--green); font-size: 13px; font-weight: 700; }
+.comment-text { margin: 0; color: var(--ink); font-size: 14px; line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; }
 .page-section.soft { background: #eeeee4; }
 .page-section.dark { background: var(--green-dark); color: var(--white); }
 .page-section.dark .page-eyebrow { color: var(--lime); }
@@ -108,6 +129,8 @@
   .page-hero p { font-size: 16px; }
   .page-hero-photo { min-height: 350px; }
   .page-section { padding: 65px 0; }
+  .contact-panel { padding: 25px; }
+  .contact-forms { grid-template-columns: 1fr; }
   .page-section-heading { margin-bottom: 27px; }
   .page-section-heading h2, .page-feature h2 { font-size: 36px; }
   .page-card { min-height: 0; }

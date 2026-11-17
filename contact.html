@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f6ef">
+  <meta name="description" content="Get in touch with Peace Over Fear on WhatsApp.">
+  <title>Contact Us — Peace Over Fear</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="page-nav page-wrap" aria-label="Main navigation">
+      <a class="page-brand" href="index.html" aria-label="Peace Over Fear home">
+        <span class="page-brand-mark" aria-hidden="true"><span>♡</span></span>
+        <span class="page-brand-name">peace over fear</span>
+      </a>
+      <button class="page-nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="page-nav-links">☰</button>
+      <div class="page-nav-links" id="page-nav-links">
+        <a href="index.html">Home</a>
+        <a href="causes.html">Causes</a>
+        <a href="solutions.html">Solutions</a>
+        <a href="importance.html">Why peace</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+        <a class="page-nav-cta" href="https://wa.me/254116336561?text=Hello%2C%20I%27d%20like%20to%20get%20in%20touch." target="_blank" rel="noopener noreferrer">WhatsApp us <span aria-hidden="true">↗</span></a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero page-wrap">
+      <div class="page-hero-grid">
+        <div>
+          <span class="page-eyebrow">We'd love to hear from you</span>
+          <h1>Let's start a <em>conversation.</em></h1>
+          <p>Have a question, idea, or feedback about Peace Over Fear? Send us a message on WhatsApp and we'll be glad to hear from you.</p>
+        </div>
+        <div class="page-hero-photo" role="img" aria-label="A welcoming space for conversation">
+          <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&amp;fit=crop&amp;w=1200&amp;q=85" alt="People sharing ideas and talking together">
+          <div class="photo-caption">Every good conversation begins with listening.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section soft">
+      <div class="page-wrap">
+        <div class="contact-panel">
+          <span class="page-eyebrow">Message us directly</span>
+          <h2>Reach us on WhatsApp</h2>
+          <p>Tap the button below to open a chat with us. You can also save our number and message us whenever it's convenient.</p>
+          <span class="contact-number">+254 116 336 561</span>
+          <div class="page-cta">
+            <a class="page-button" href="https://wa.me/254116336561?text=Hello%2C%20Peace%20Over%20Fear!%20I%27d%20like%20to%20get%20in%20touch." target="_blank" rel="noopener noreferrer">Chat with us on WhatsApp <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="page-wrap">
+        <div class="page-section-heading">
+          <span class="page-eyebrow">Help us learn with you</span>
+          <h2>Share your experience</h2>
+          <p class="page-intro">Feedback is saved only in this browser. Comments are emailed to us through FormSubmit and saved in this browser; they are not published for other visitors.</p>
+        </div>
+        <div class="contact-forms">
+          <form class="contact-form" id="feedback-form">
+            <h3>Send feedback</h3>
+            <label for="feedback-message">What worked well, or what could we improve?</label>
+            <textarea id="feedback-message" name="message" rows="4" required maxlength="1000"></textarea>
+            <button class="page-button" type="submit">Save feedback</button>
+            <p class="form-status" id="feedback-status" aria-live="polite"></p>
+          </form>
+
+          <section class="contact-form" aria-labelledby="comments-heading">
+            <h3 id="comments-heading">Your comments</h3>
+            <p class="local-note">Comments are visible only in this browser on this device.</p>
+            <form id="comment-form">
+              <label for="comment-name">Name (optional)</label>
+              <input id="comment-name" name="name" type="text" maxlength="60" autocomplete="name">
+              <label for="comment-message">Comment</label>
+              <textarea id="comment-message" name="message" rows="3" required maxlength="500"></textarea>
+              <label class="consent-label"><input id="comment-consent" type="checkbox" required> I agree to send this comment to the site owner by email using FormSubmit.</label>
+              <input class="form-honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <button class="page-button" type="submit">Add comment</button>
+              <p class="form-status" id="comment-status" aria-live="polite"></p>
+            </form>
+            <ul class="comment-list" id="comment-list" aria-live="polite"></ul>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <div class="page-wrap page-footer-inner">
+      <a class="page-brand" href="index.html"><span class="page-brand-mark" aria-hidden="true">✳</span><span class="page-brand-name">peace over fear</span></a>
+      <p>Made with hope for a more peaceful world.</p>
+      <div class="page-footer-links"><a href="causes.html">Causes</a><a href="solutions.html">Solutions</a><a href="importance.html">Why peace</a><a href="contact.html" aria-current="page">Contact</a></div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+  <script src="contact.js"></script>
+</body>
+</html>
